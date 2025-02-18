@@ -1,0 +1,211 @@
+/* Custom properties */
+:root {
+  --spacer: 1rem;
+  --vertical-spacer: 2.2rem;
+
+  --clr-neutral-900: hsl(0, 0%, 9%);
+  --clr-neutral-100: hsl(0, 0%, 100%);
+  --clr-accent-100: hsl(275, 100%, 97%);
+  --clr-accent-400: rgb(140, 105, 145);
+  --clr-accent-900: hsl(292, 42%, 14%);
+
+  --box-shadow: 0px 21px 24px -2px rgba(140, 105, 145, 0.5);
+}
+
+@font-face {
+  font-family: "WorkSans";
+  src: url("./assets/fonts/woff2/WorkSans-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "WorkSans";
+  src: url("./assets/fonts/woff2/WorkSans-Bold.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "WorkSans";
+  src: url("./assets/fonts/woff2/WorkSans-SemiBold.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+}
+
+/* resets */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+ul[class],
+ol[class] {
+  list-style: none;
+  padding: 0;
+}
+
+img {
+  width: 100vw;
+  height: 175px;
+  object-fit: cover; /* make the image behave like covering background image */
+}
+
+/* utility classes */
+
+.flow > * + * {
+  margin-top: var(--flow-space, var(--spacer));
+}
+
+.container {
+  padding: 0 3em;
+  max-width: 40rem;
+  margin: 0 auto;
+}
+
+.shadow {
+  box-shadow: var(--box-shadow);
+}
+
+.horizontal-rule {
+  margin-inline-start: var(--vertical-spacer);
+  margin-inline-end: var(--vertical-spacer);
+  margin-top: 0;
+  margin-bottom: 0;
+  color: var(--clr-neutral-900);
+}
+
+@media (max-width: 38em) {
+  .container {
+    max-width: 28em;
+  }
+}
+
+/* typography */
+
+body {
+  font-size: 1rem;
+  color: var(--clr-accent-900);
+  background-color: var(--clr-accent-100);
+}
+
+h1,
+h2 {
+  font-family: "WorkSans";
+  font-weight: 700;
+  font-size: 3.5rem;
+}
+
+p {
+  font-family: "WorkSans";
+  font-weight: 400;
+  padding: var(--spacer);
+}
+
+.accordion {
+  font-family: "WorkSans";
+  font-weight: 600;
+  padding: var(--spacer);
+  font-size: 1.2rem;
+  background-color: var(--clr-neutral-100);
+  padding: 0 var(--vertical-spacer) 0 var(--vertical-spacer);
+}
+
+.accordion:hover {
+  color: var(--clr-accent-400);
+}
+
+/* general styles */
+
+body {
+  min-height: 100vh; /*for floating footer fix*/
+  display: flex; /*for floating footer fix*/
+  flex-direction: column; /*for floating footer fix*/
+}
+
+footer {
+  margin-top: auto; /*for floating footer fix*/
+  margin-bottom: 1rem;
+}
+
+.faq-card {
+  margin-top: -5rem;
+  margin-bottom: 3rem;
+  margin-left: var(--spacer);
+}
+
+.faqs {
+  display: inline-block;
+  border-radius: 1.2rem;
+  background-color: var(--clr-neutral-100);
+}
+
+.faqs > .panel:last-of-type {
+  /* just so this border bottom doesn't cover border radius of parent container */
+  border-bottom-left-radius: 1.2rem;
+  border-bottom-right-radius: 1.2rem;
+}
+
+.faq-header {
+  display: flex;
+  align-items: center;
+  padding: 1rem var(--vertical-spacer) 1rem var(--vertical-spacer);
+}
+
+.faq-header::before {
+  margin-right: 1.5rem;
+}
+
+/* accordion icons */
+
+.faq-header::before {
+  content: url("./assets/images/icon-star.svg");
+}
+
+.accordion {
+  display: flex;
+  align-items: center;
+}
+
+.accordion::after {
+  margin-left: auto;
+  content: url("./assets/images/icon-plus.svg");
+}
+
+.active.accordion::after {
+  content: url("./assets/images/icon-minus.svg");
+}
+
+.attribution {
+  color: var(--clr-neutral-900);
+  text-align: center;
+}
+.attribution a {
+  color: var(--clr-accent-400);
+}
+
+.accordion {
+  cursor: pointer;
+
+  width: 100%;
+  border: none;
+  text-align: left;
+  transition: 0.4s;
+}
+
+.panel {
+  padding: 0 18px;
+  background-color: var(--clr-neutral-100);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
